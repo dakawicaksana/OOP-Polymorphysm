@@ -1,85 +1,91 @@
 using System;
-using System.Linq;
 
-namespace appkeluarga
+public class HelloWorld
 {
-	class Keluarga
+	static public void Main()
 	{
-		public string Nama { get; set; }
-		public int Umur { get; set; }
-		public string Hobi { get; set; }
-		public string Nomor { get; set; }
+		
+		familyhobi family = new familyhobi();
+		familyhobi ayah = new Ayah();
+		familyhobi ibu = new Ibu();
+		familyhobi saya = new Saya();
+		familyhobi adik = new Adik();
 
-		public virtual void Informasi()
+		familydata ayahku = new familydata("Eko Hardiyono", 46, +6281234721757);
+		familydata ibuku = new familydata("Lailil Fauziah", 38, +6285850803527);
+		familydata aku = new familydata("Daka Wicaksana", 16, +6285729789212);
+		familydata adikku = new familydata("Guna Dharma", 7, 0);
+
+
+		Console.WriteLine("data ayah:\n" + ayahku.nama + "\n" + ayahku.umur + "\n" + ayahku.nohp);
+		ayah.Hobi();
+		Console.WriteLine();
+		
+		Console.WriteLine("data ibu:\n" + ibuku.nama + "\n" + ibuku.umur + "\n" + ibuku.nohp);
+		ibu.Hobi();
+		Console.WriteLine();
+		
+		Console.WriteLine("data saya:\n" + aku.nama + "\n" + aku.umur + "\n" + aku.nohp);
+		saya.Hobi();
+		Console.WriteLine();
+		
+		Console.WriteLine("data adik:\n" + adikku.nama + "\n" + adikku.umur + "\n" + adikku.nohp);
+		adik.Hobi();
+
+	}
+	
+	class familydata
+	{
+		public string nama;
+		public int umur;
+		public long nohp;
+
+		public familydata(string Nama, int Umur, long Nohp)
 		{
-			Console.WriteLine($"Nama = {Nama}");
-			Console.WriteLine($"Umur = {Umur}");
-			Console.WriteLine($"Hobi = {Hobi}");
-			Console.WriteLine($"Nomor HP = {Nomor}");
+			nama = Nama;
+			umur = Umur;
+			nohp = Nohp;
+		}
+	}
+	
+	class familyhobi
+	{
+		public virtual void Hobi()
+		{
+			Console.WriteLine("Hobi");
+		}
+	}
+	
+	class Ayah : familyhobi
+	{
+		public override void Hobi()
+		{
+			Console.WriteLine("mendengarkan musik");
+		}
+	}
+	
+	class Ibu : familyhobi
+	{
+		public override void Hobi()
+		{
+			Console.WriteLine("membaca");
+		}
+	}
+	
+	class Saya : familyhobi
+	{
+		public override void Hobi()
+		{
+			Console.WriteLine("main rubik");
+		}
+	}
+	
+	class Adik : familyhobi
+	{
+		public override void Hobi()
+		{
+			Console.WriteLine("main puzzle");
 		}
 	}
 
-	class Ayah : Keluarga
-	{
-		public string Pekerjaan { get; set; }
-
-		public override void Informasi()
-		{
-			base.Informasi();
-			Console.WriteLine($"Pekerjaan = {Pekerjaan}");
-		}
-	}
-
-	class Ibu : Keluarga
-	{
-		public string Pekerjaan { get; set; }
-
-		public override void Informasi()
-		{
-			base.Informasi();
-			Console.WriteLine($"Pekerjaan = {Pekerjaan}");
-		}
-	}
-
-	class Adik : Keluarga
-	{
-		public string Sekolah { get; set; }
-
-		public override void Informasi()
-		{
-			base.Informasi();
-			Console.WriteLine($"Sekolah = {Sekolah}");
-		}
-	}
-
-	class Saya : Keluarga
-	{
-		public string Sekolah { get; set; }
-
-		public override void Informasi()
-		{
-			base.Informasi();
-			Console.WriteLine($"Sekolah = {Sekolah}");
-		}
-	}
-
-
-	public static class Program
-	{
-		public static void Main()
-		{
-			Keluarga[] keluarga = new Keluarga[4];
-			keluarga[0] = new Ayah { Nama = "Eko Hardiyono", Umur = 48, Pekerjaan = "Wirausaha", Hobi = "dengar musik", Nomor = "0812-3472-1757" };
-			keluarga[1] = new Ibu { Nama = "Lailil Fauziah", Umur = 39, Pekerjaan = "Ibu rumah tangga", Hobi = "membaca", Nomor = "0858-5080-3527" };
-			keluarga[2] = new Adik { Nama = "Guna Dharma", Umur = 7, Sekolah = "SD", Hobi = "Main puzzle" };
-			keluarga[3] = new Saya { Nama = "Daka Wicaksana", Umur = 16, Sekolah = "SMK", Hobi = "Main Rubik", Nomor = "0857-2978-9212" };
-
-			foreach (Keluarga anggota in keluarga)
-			{
-				anggota.Informasi();
-				Console.WriteLine();
-			}
-
-		}
-	}
 }
